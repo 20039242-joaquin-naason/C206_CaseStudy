@@ -3,11 +3,13 @@ public class Customer {
 
 	private int id;
 	private String order;
+	private int price;
 	
-	public Customer(int id, String order) {
+	public Customer(int id, String order, int price) {
 
 		this.id = id;
 		this.order = order;
+		this.price = price;
 	}
 
 	public int getId() {
@@ -25,6 +27,18 @@ public class Customer {
 	public void setOrder(String order) {
 		this.order = order;
 	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	
+	
+	
+	
 	
 	
 }

@@ -1,14 +1,15 @@
 import java.util.ArrayList;
 
 public class C206_CaseStudy {
-	
-	private static final int OPTION_QUIT = 5;
+
+	private static final int OPTION_QUIT = 7;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		
 
 		ArrayList<Promotion> promotionList = new ArrayList<Promotion>();
+		ArrayList<Customer> custlist = new ArrayList<Customer>();
 
 		promotionList.add(new Promotion("Spaghetti", 5.00, 3.50, 6));
 		promotionList.add(new Promotion("Fries", 3.00, 2.00, 6));
@@ -31,6 +32,14 @@ public class C206_CaseStudy {
 
 			} else if (option == 3) {
 
+			} else if (option == 4) {
+				//add order for customer
+			} else if (option == 5) {
+				//view order for customer
+				
+			} else if (option == 6) {
+				//delete order for customer
+
 			} else if (option == OPTION_QUIT) {
 				System.out.println("Bye!");
 			} else {
@@ -39,24 +48,26 @@ public class C206_CaseStudy {
 
 		}
 	}
-	
+
 	public static void menu() {
 		C206_CaseStudy.setHeader("RESOURCE CENTRE APP");
 		System.out.println("1. View Promotion");
 		System.out.println("2. Add Promotion");
 		System.out.println("3. Delete Promotion");
-		System.out.println("4. Quit");
+		System.out.println("4. Add order by customer");
+		System.out.println("5. View order by customer");
+		System.out.println("6. Delete order by customer");
+		System.out.println("7. Quit");
 		Helper.line(80, "-");
 
-
 	}
-	
+
 	public static void setHeader(String header) {
 		Helper.line(80, "-");
 		System.out.println(header);
 		Helper.line(80, "-");
 	}
-	
+
 	public static String showAvailability(boolean isAvailable) {
 		String avail;
 
@@ -67,42 +78,49 @@ public class C206_CaseStudy {
 		}
 		return avail;
 	}
+
+	// ================================= Option 1 View (CRUD - Read)
+	// =================================
+	public static String retrieveAllPromotion(ArrayList<Promotion> promotionList) {
+		String output = "";
+
+		for (int i = 0; i < promotionList.size(); i++) {
+
+			output += String.format("%-10s %-30s %-10s %-10s %-20d\n", promotionList.get(i).getItem(),
+					promotionList.get(i).getOldprice(),
+					C206_CaseStudy.showAvailability(promotionList.get(i).getIsAvailable()),
+					promotionList.get(i).getOfferprice(), promotionList.get(i).getDays());
+		}
+		return output;
+	}
+
+	public static void viewAllPromotion(ArrayList<Promotion> promotionList) {
+		C206_CaseStudy.setHeader("PROMOTION LIST");
+		String output = String.format("%-10s %-30s %-10s %-10s %-20s\n", "ITEM", "OLD PRICE", "AVAILABLE",
+				"OFFER PRICE", "DAYS");
+		output += retrieveAllPromotion(promotionList);
+		System.out.println(output);
+	}
+
+	// ================================= Option 2 Add (CRUD -
+	// Create)=================================
+	public static Promotion inputPromotion() {
+		String item = Helper.readString("Enter item > ");
+		double oldprice = Helper.readDouble("Enter old price > ");
+		double offerprice = Helper.readDouble("Enter offer price > ");
+		int days = Helper.readInt("Enter days > ");
+
+		Promotion po = new Promotion(item, oldprice, offerprice, days);
+		return po;
+
+	}
+
+	public static void addPromotion(ArrayList<Promotion> promotionList, Promotion po) {
+
+		promotionList.add(po);
+		System.out.println("Promotion added");
+	}
 	
-	//================================= Option 1 View (CRUD - Read) =================================
-		public static String retrieveAllPromotion(ArrayList<Promotion> promotionList) {
-			String output = "";
+	
 
-			for (int i = 0; i < promotionList.size(); i++) {
-
-				output += String.format("%-10s %-30s %-10s %-10s %-20d\n", promotionList.get(i).getItem(),
-						promotionList.get(i).getOldprice(), C206_CaseStudy.showAvailability(promotionList.get(i).getIsAvailable()),
-						promotionList.get(i).getOfferprice(), promotionList.get(i).getDays());
-			}
-			return output;
-		}
-		public static void viewAllPromotion(ArrayList<Promotion> promotionList) {
-			C206_CaseStudy.setHeader("PROMOTION LIST");
-			String output = String.format("%-10s %-30s %-10s %-10s %-20s\n", "ITEM", "OLD PRICE",
-					"AVAILABLE", "OFFER PRICE","DAYS");
-			 output += retrieveAllPromotion(promotionList);	
-			System.out.println(output);
-		}
-		
-		//================================= Option 2 Add (CRUD - Create)=================================
-		public static Promotion inputPromotion() {
-			String item = Helper.readString("Enter item > ");
-			double oldprice = Helper.readDouble("Enter old price > ");
-			double offerprice = Helper.readDouble("Enter offer price > ");
-			int days = Helper.readInt("Enter days > ");
-
-			Promotion po= new Promotion(item, oldprice, offerprice, days);
-			return po;
-			
-		}
-		public static void addPromotion(ArrayList<Promotion> promotionList, Promotion po) {
-			
-			promotionList.add(po);
-			System.out.println("Promotion added");
-		}
-
-}
+}//end of class

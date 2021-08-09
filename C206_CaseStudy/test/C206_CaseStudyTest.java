@@ -75,5 +75,6 @@ public class C206_CaseStudyTest {
 		assertEquals("Check that ViewAllPromotionlist", testOutput, allPromotion);
 		
 	}
+	
 
 }

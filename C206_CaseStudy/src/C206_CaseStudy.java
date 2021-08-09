@@ -116,13 +116,12 @@ public class C206_CaseStudy {
 		return avail;
 	}
 	
-	//================================= Option 1 View (CRUD - Read) =================================
 		public static String retrieveAllPromotion(ArrayList<Promotion> promotionList) {
 			String output = "";
 
 			for (int i = 0; i < promotionList.size(); i++) {
 
-				output += String.format("%-10s %-30s %-10s %-10s %-20d\n", promotionList.get(i).getItem(),
+				output += String.format("%-10s %-30.2f %-10s %-10.2f %-20d\n", promotionList.get(i).getItem(),
 						promotionList.get(i).getOldprice(), C206_CaseStudy.showAvailability(promotionList.get(i).getIsAvailable()),
 						promotionList.get(i).getOfferprice(), promotionList.get(i).getDays());
 			}
@@ -136,7 +135,6 @@ public class C206_CaseStudy {
 			System.out.println(output);
 		}
 		
-		//================================= Option 2 Add (CRUD - Create)=================================
 		public static Promotion inputPromotion() {
 			String item = Helper.readString("Enter item > ");
 			double oldprice = Helper.readDouble("Enter old price > ");

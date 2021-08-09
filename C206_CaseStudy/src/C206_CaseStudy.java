@@ -7,6 +7,7 @@ public class C206_CaseStudy {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
+
 		ArrayList<Promotion> promotionList = new ArrayList<Promotion>();
 
 		promotionList.add(new Promotion("Spaghetti", 5.00, 3.50, 6));
@@ -96,6 +97,7 @@ public class C206_CaseStudy {
         System.out.println("16. Quit");
         Helper.line(80, "-");
     }
+
 	
 	public static void setHeader(String header) {
 		Helper.line(80, "-");

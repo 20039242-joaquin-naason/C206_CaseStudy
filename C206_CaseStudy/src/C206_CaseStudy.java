@@ -8,10 +8,11 @@ public class C206_CaseStudy {
 		// TODO Auto-generated method stub
 
 		ArrayList<Promotion> promotionList = new ArrayList<Promotion>();
-		ArrayList<Customer> custlist = new ArrayList<Customer>();
+		
 
 		promotionList.add(new Promotion("Spaghetti", 5.00, 3.50, 6));
 		promotionList.add(new Promotion("Fries", 3.00, 2.00, 6));
+		promotionList.add(new Customer("Burger",10.6, 7.5, 3,78,"Burger,"));
 
 		int option = 0;
 

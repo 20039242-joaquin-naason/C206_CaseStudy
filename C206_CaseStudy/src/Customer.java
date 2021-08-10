@@ -1,15 +1,13 @@
 
-public class Customer {
+public class Customer extends Promotion{
 
 	private int id;
 	private String order;
-	private int price;
 	
-	public Customer(int id, String order, int price) {
-
+	public Customer(String item, double oldprice, double offerprice, int days, int id, String order) {
+		super(item, oldprice, offerprice, days);
 		this.id = id;
 		this.order = order;
-		this.price = price;
 	}
 
 	public int getId() {
@@ -26,14 +24,6 @@ public class Customer {
 
 	public void setOrder(String order) {
 		this.order = order;
-	}
-
-	public int getPrice() {
-		return price;
-	}
-
-	public void setPrice(int price) {
-		this.price = price;
 	}
 	
 	

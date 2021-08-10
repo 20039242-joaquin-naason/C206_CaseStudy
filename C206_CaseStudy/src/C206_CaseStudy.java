@@ -8,11 +8,14 @@ public class C206_CaseStudy {
 		// TODO Auto-generated method stub
 
 		ArrayList<Promotion> promotionList = new ArrayList<Promotion>();
+		ArrayList<Customer> cuslist= new ArrayList<Customer>();
 		
 
 		promotionList.add(new Promotion("Spaghetti", 5.00, 3.50, 6));
 		promotionList.add(new Promotion("Fries", 3.00, 2.00, 6));
-		promotionList.add(new Customer("Burger",10.6, 7.5, 3,78,"Burger,"));
+		cuslist.add(new Customer(1,"Burger,Fries",7));
+	
+	
 
 		int option = 0;
 
@@ -65,6 +68,8 @@ public class C206_CaseStudy {
 
 			} else if (option == 14) {
 				// view order
+				C206_CaseStudy.vieworder(cuslist);;
+				
 
 			} else if (option == 15) {
 				// delete
@@ -160,7 +165,19 @@ public class C206_CaseStudy {
 	}
 
     //----add new order-----//
+	
 	//----View new order-----//
+	public static void vieworder(ArrayList<Customer> cuslist) {
+		String output =String.format("%-20s %-30s %10s\n","Customer ID","Order","Total Price");
+
+		for (int i = 0; i < cuslist.size(); i++) {
+		output +=String.format("%-20d %-30s %10d\n",cuslist.get(i).getId(),cuslist.get(i).getOrder(),cuslist.get(i).getTotal());
+		}
+		System.out.println(output);
+		
+	
+	}
+	
 	//----Delete new order-----//
 
 

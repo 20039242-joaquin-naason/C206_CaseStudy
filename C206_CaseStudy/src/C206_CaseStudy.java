@@ -6,7 +6,6 @@ public class C206_CaseStudy {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
 
 		ArrayList<Promotion> promotionList = new ArrayList<Promotion>();
 		ArrayList<Customer> custlist = new ArrayList<Customer>();
@@ -16,31 +15,60 @@ public class C206_CaseStudy {
 
 		int option = 0;
 
-		while (option != OPTION_QUIT) {
+		while (option != 16) {
 
 			C206_CaseStudy.menu();
 			option = Helper.readInt("Enter an option > ");
 
 			if (option == 1) {
 				// View all items
-				C206_CaseStudy.viewAllPromotion(promotionList);
 
 			} else if (option == 2) {
 				// Add a new item
+
+			} else if (option == 3) {
+				// Loan item
+
+			} else if (option == 4) {
+				// Return item
+
+			} else if (option == 5) {
+				// Return item
+
+			} else if (option == 6) {
+				// Return item
+
+			} else if (option == 7) {
+				// Return item
+
+			} else if (option == 8) {
+				// Return item
+
+			} else if (option == 9) {
+				// Return item
+
+			} else if (option == 10) {
+				// Add new promotion offers
 				Promotion po = inputPromotion();
 				C206_CaseStudy.addPromotion(promotionList, po);
 
-			} else if (option == 3) {
+			} else if (option == 11) {
+				// View promotion offers
+				C206_CaseStudy.viewAllPromotion(promotionList);
 
-			} else if (option == 4) {
-				//add order for customer
-			} else if (option == 5) {
-				//view order for customer
-				
-			} else if (option == 6) {
-				//delete order for customer
+			} else if (option == 12) {
+				// Delete promotion offers
 
-			} else if (option == OPTION_QUIT) {
+			} else if (option == 13) {
+				// Add order
+
+			} else if (option == 14) {
+				// view order
+
+			} else if (option == 15) {
+				// delete
+
+			} else if (option == 16) {
 				System.out.println("Bye!");
 			} else {
 				System.out.println("Invalid option");
@@ -50,16 +78,25 @@ public class C206_CaseStudy {
 	}
 
 	public static void menu() {
-		C206_CaseStudy.setHeader("RESOURCE CENTRE APP");
-		System.out.println("1. View Promotion");
-		System.out.println("2. Add Promotion");
-		System.out.println("3. Delete Promotion");
-		System.out.println("4. Add order by customer");
-		System.out.println("5. View order by customer");
-		System.out.println("6. Delete order by customer");
-		System.out.println("7. Quit");
-		Helper.line(80, "-");
 
+		C206_CaseStudy.setHeader("Canteen Automation System (CAS)");
+		System.out.println("1. Add new stall");
+		System.out.println("2. View Stall");
+		System.out.println("3. Delete Stall");
+		System.out.println("4. Add new food items");
+		System.out.println("5. View food items");
+		System.out.println("6. Delete food items");
+		System.out.println("7. Add new purchase orders of ingredients");
+		System.out.println("8. View purchase orders of ingredients");
+		System.out.println("9. Delete purchase orders of ingredients");
+		System.out.println("10. Add new promotion offers");
+		System.out.println("11. View promotion offers");
+		System.out.println("12. Delete promotion offers");
+		System.out.println("13. Add new orders by customer");
+		System.out.println("14. View orders by customer");
+		System.out.println("15. Delete orders by customer");
+		System.out.println("16. Quit");
+		Helper.line(80, "-");
 	}
 
 	public static void setHeader(String header) {
@@ -120,7 +157,15 @@ public class C206_CaseStudy {
 		promotionList.add(po);
 		System.out.println("Promotion added");
 	}
-	
-	
 
-}//end of class
+    //----add new order-----//
+	//----View new order-----//
+	//----Delete new order-----//
+
+
+
+
+
+
+
+}// end of class

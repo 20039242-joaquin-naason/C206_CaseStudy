@@ -23,6 +23,9 @@ public class C206_CaseStudyTest {
 
 	@After
 	public void tearDown() throws Exception {
+		po1 = null;
+		po2 = null;
+		promotionList = null;
 	}
 
 	@Test
@@ -72,5 +75,6 @@ public class C206_CaseStudyTest {
 		assertEquals("Check that ViewAllPromotionlist", testOutput, allPromotion);
 		
 	}
+	
 
 }

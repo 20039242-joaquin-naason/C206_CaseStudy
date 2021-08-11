@@ -333,6 +333,13 @@ public class C206_CaseStudy {
 		return false;
 	}
 	
+	public static void check(ArrayList<Stall_Info> stall) {
+		
+		if (stall.size() > 10) {
+			System.out.println("Cannot have more than 10 stalls.");
+		}
+	}
+	
 	//Delete existing stall (Ying Xuan)
 	public static boolean searchStall(ArrayList<Stall_Info> stall, int id) {
 		for (Stall_Info i : stall) {

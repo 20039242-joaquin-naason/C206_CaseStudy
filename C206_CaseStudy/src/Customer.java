@@ -1,39 +1,33 @@
 
-public class Customer {
+public class Customer extends Food{
 
-	private int id;
-	private String order;
+	private int Orderid;
 	private double total;
 	
-	
-	
-	
-	public Customer(int id, String order, double total) {
-		// TODO Auto-generated constructor stub
-		this.id = id;
-		this.order = order;
+	public Customer(int id, String name, double price, boolean isAvailable, int orderid, double total) {
+		super(id, name, price, isAvailable);
+		Orderid = orderid;
 		this.total = total;
 	}
 
-	public int getId() {
-		return id;
+	public int getOrderid() {
+		return Orderid;
 	}
-	public void setId(int id) {
-		this.id = id;
+
+	public void setOrderid(int orderid) {
+		Orderid = orderid;
 	}
-	public String getOrder() {
-		return order;
-	}
-	public void setOrder(String order) {
-		this.order = order;
-	}
+
 	public double getTotal() {
+		
 		return total;
 	}
+
 	public void setTotal(double total) {
 		this.total = total;
 	}
 	
 	
+
 	
 }

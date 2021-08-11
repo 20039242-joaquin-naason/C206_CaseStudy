@@ -12,9 +12,7 @@ public class C206_CaseStudy {
 
 		promotionList.add(new Promotion(1, "Spaghetti", 5.00, 3.50, 6));
 		promotionList.add(new Promotion(2, "Fries", 3.00, 2.00, 6));
-		cuslist.add(new Customer(1,"Burger,Fries",7.0));
-		cuslist.add(new Customer(2,"teriyaki set",5.5));
-	
+		
 
 		ArrayList<Stall_Info> stall = new ArrayList<Stall_Info>();
 		
@@ -201,7 +199,7 @@ public class C206_CaseStudy {
 		String output =String.format("%-20s %-30s %10s\n","Customer ID","Order","Total Price");
 
 		for (int i = 0; i < cuslist.size(); i++) {
-		output +=String.format("%-20d %-30s %10d\n",cuslist.get(i).getId(),cuslist.get(i).getOrder(),cuslist.get(i).getTotal());
+		output +=String.format("%-20d %-30s %10d\n",cuslist.get(i).getId(),cuslist.get(i).get,cuslist.get(i).getTotal());
 		}
 		System.out.println(output);
 	}
@@ -211,8 +209,8 @@ public class C206_CaseStudy {
 		String order=Helper.readString("Enter Order >");
 		int price=Helper.readInt("Enter the total price");
 		
-		Customer c= new Customer(id,order,price);
-		return c;
+		//Customer c= new Customer(id,order,price);
+		//return c;
 	}
 	public static void addcheckorder(ArrayList<Customer> cuslist,Customer c) {
 		cuslist.add(c);

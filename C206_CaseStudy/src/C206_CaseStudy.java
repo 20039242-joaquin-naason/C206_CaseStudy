@@ -12,7 +12,9 @@ public class C206_CaseStudy {
 
 		promotionList.add(new Promotion(1, "Spaghetti", 5.00, 3.50, 6));
 		promotionList.add(new Promotion(2, "Fries", 3.00, 2.00, 6));
-		cuslist.add(new Customer(1,"Burger,Fries",7));
+		cuslist.add(new Customer(1,"Burger,Fries",7.0));
+		cuslist.add(new Customer(2,"teriyaki set",5.5));
+	
 
 		ArrayList<Stall_Info> stall = new ArrayList<Stall_Info>();
 		

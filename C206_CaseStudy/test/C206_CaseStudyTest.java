@@ -146,6 +146,7 @@ public class C206_CaseStudyTest {
 	}
 
 	// Eddy
+	@Test
 	public void testAddFood() {
 		// food list is not null so that can add food item.
 		assertNotNull("Test if there is valid food list to add to", foodList);
@@ -160,6 +161,7 @@ public class C206_CaseStudyTest {
 		assertEquals("Test that if food list size is 2", 2, foodList.size());
 	}
 
+	@Test
 	public void TestgetAllFoodItem() {
 		// food list is not null so that can view food item.
 		assertNotNull("Test if there is valid food list to get food item", foodList);
@@ -174,6 +176,7 @@ public class C206_CaseStudyTest {
 		assertFalse("Test that the food list is not empty after adding one food item", foodList.isEmpty());
 	}
 
+	@Test
 	public void TestdeleteFood() {
 		// food list is not null so that can delete a food item.
 		assertNotNull("Test if there is valid food list to delete food item", foodList);

@@ -37,21 +37,24 @@ public class C206_CaseStudy {
 				// View all items
 
 			} else if (option == 2) {
-				
+
 				C206_CaseStudy.viewStall(stall);
 
 			} else if (option == 3) {
 				// Loan item
 
 			} else if (option == 4) {
-				// Return item
-
+				// add food item
+				// Eddy
+				Food f = enterFoodItem();
+				C206_CaseStudy.addFood(foodList, f);
 			} else if (option == 5) {
-				// Return item
-
+				// view food item
+				C206_CaseStudy.viewFood(foodList);
 			} else if (option == 6) {
-				// Return item
-
+				// delete food item
+				C206_CaseStudy.deleteFood(foodList);
+				// Eddy
 			} else if (option == 7) {
 				// Return item
 
@@ -231,23 +234,24 @@ public class C206_CaseStudy {
 		System.out.println("Order has been added");
 
 	}
-	
-	//view stall list
+
+	// view stall list
 	public static String retrieveAllStall(ArrayList<Stall_Info> stall) {
 		String output = "";
 
 		for (int i = 0; i < stall.size(); i++) {
 
-			output += String.format("%-20d %-20s %-20s %-20s\n", stall.get(i).getStallId(),
-					stall.get(i).getName(), stall.get(i).getOperationdate(), stall.get(i).getDescription());
+			output += String.format("%-20d %-20s %-20s %-20s\n", stall.get(i).getStallId(), stall.get(i).getName(),
+					stall.get(i).getOperationdate(), stall.get(i).getDescription());
 		}
 		return output;
 	}
+
 	public static void viewStall(ArrayList<Stall_Info> stall) {
 		C206_CaseStudy.setHeader("STALL LIST");
-		String output = String.format("%-20s %-20s %-20s %-20s\n", "STALL LIST", "NAME",
-				"OPERATION DATE", "DESCRIPTION");
-		 output += retrieveAllStall(stall);	
+		String output = String.format("%-20s %-20s %-20s %-20s\n", "STALL LIST", "NAME", "OPERATION DATE",
+				"DESCRIPTION");
+		output += retrieveAllStall(stall);
 		System.out.println(output);
 	}
 

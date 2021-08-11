@@ -1,13 +1,15 @@
 
 public class Promotion {
 
+	private int id;
 	private String item;
 	private double oldprice;
 	private double offerprice;
 	private int days;
 	private boolean isAvailable;
 	
-	public Promotion(String item, double oldprice, double offerprice, int days) {
+	public Promotion(int id, String item, double oldprice, double offerprice, int days) {
+		this.id = id;
 		this.item = item;
 		this.oldprice = oldprice;
 		this.offerprice = offerprice;
@@ -21,6 +23,15 @@ public class Promotion {
 
 	public void setItem(String item) {
 		this.item = item;
+	}
+	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public double getOldprice() {

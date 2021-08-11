@@ -17,8 +17,8 @@ public class C206_CaseStudy {
 
 		ArrayList<Stall_Info> stall = new ArrayList<Stall_Info>();
 
-		stall.add(new Stall_Info(1, "Chinese Food", "06-09-2021"));
-		stall.add(new Stall_Info(2, "Malay Food", "06-09-2021"));
+		stall.add(new Stall_Info(1, "Chinese Food", "06-09-2021", "tasty"));
+		stall.add(new Stall_Info(2, "Malay Food", "06-09-2021", "yummy"));
 
 		int option = 0;
 
@@ -31,7 +31,8 @@ public class C206_CaseStudy {
 				// View all items
 
 			} else if (option == 2) {
-				// Add a new item
+				
+				C206_CaseStudy.viewStall(stall);
 
 			} else if (option == 3) {
 				// Loan item
@@ -223,6 +224,25 @@ public class C206_CaseStudy {
 		cuslist.add(c);
 		System.out.println("Order has been added");
 
+	}
+	
+	//view stall list
+	public static String retrieveAllStall(ArrayList<Stall_Info> stall) {
+		String output = "";
+
+		for (int i = 0; i < stall.size(); i++) {
+
+			output += String.format("%-20d %-20s %-20s %-20s\n", stall.get(i).getStallId(),
+					stall.get(i).getName(), stall.get(i).getOperationdate(), stall.get(i).getDescription());
+		}
+		return output;
+	}
+	public static void viewStall(ArrayList<Stall_Info> stall) {
+		C206_CaseStudy.setHeader("STALL LIST");
+		String output = String.format("%-20s %-20s %-20s %-20s\n", "STALL LIST", "NAME",
+				"OPERATION DATE", "DESCRIPTION");
+		 output += retrieveAllStall(stall);	
+		System.out.println(output);
 	}
 
 }

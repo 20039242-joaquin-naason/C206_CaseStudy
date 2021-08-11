@@ -167,13 +167,14 @@ public class C206_CaseStudyTest {
 		assertNotNull("Test if there is valid food list to get food item", foodList);
 
 		// the food list is not empty so can view food items.
+		foodList.add(f1);
+		C206_CaseStudy.getAllFoodItem(foodList);
 		assertFalse("Test that if the food list is not empty so can view food", foodList.isEmpty());
 
-		// given an empty food list, after adding 1 food item, test that the size of the
-		// food list is 1.
-		C206_CaseStudy.addFood(foodList, f1);
+		// Continue from step 2, test that the size of the food list is 1 and is not
+		// empty.
 		assertEquals("Test that food list size is 1", 1, foodList.size());
-		assertFalse("Test that the food list is not empty after adding one food item", foodList.isEmpty());
+		assertFalse("Test that the food list is not empty", foodList.isEmpty());
 	}
 
 	@Test

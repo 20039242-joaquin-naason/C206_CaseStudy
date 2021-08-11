@@ -20,8 +20,8 @@ public class C206_CaseStudyTest {
 	public void setUp() throws Exception {
 		po1 = new Promotion(1, "Spaghetti", 5.00, 3.50, 6);
 		po2 = new Promotion(2, "Fries", 3.00, 1.00, 6);
-		c1 = new Customer(3, "Chicken Rice", 2.5,1, 5.0, 2);
-		c2 = new Customer(2, "teriyaki set", 5.0,1, 5.0, 1);
+		c1 = new Customer(3, "Chicken Rice", 2.5, 1, 5.0, 2);
+		c2 = new Customer(2, "teriyaki set", 5.0, 1, 5.0, 1);
 
 		promotionList = new ArrayList<Promotion>();
 	}
@@ -31,6 +31,11 @@ public class C206_CaseStudyTest {
 		po1 = null;
 		po2 = null;
 		promotionList = null;
+		
+		c1=null;
+		c2=null;
+		cuslist=null;
+		
 	}
 
 	@Test
@@ -107,12 +112,14 @@ public class C206_CaseStudyTest {
 	}
 
 	// test add order
+	@Test
 	public void testAddorder() {
 		// Item list is not null, so that can add a new item
 		assertNotNull("Test if there is valid Customer order arraylist to add to", cuslist);
 
 		// Given an empty list, after adding 1 item, the size of the list is 1
 		C206_CaseStudy.addcheckorder(cuslist, c1);
+
 		assertEquals("Test if that Customer order  arraylist size is 1?", 1, cuslist.size());
 
 		// The item just added is as same as the first item of the list
@@ -122,6 +129,28 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.addcheckorder(cuslist, c2);
 		assertEquals("Test that Customer order  arraylist size is 2?", 2, cuslist.size());
 
+	}
+
+	// test view order
+	@Test
+	public void testvieworder() {
+
+		assertNotNull("Test if there is valid customer order arraylist to add to", cuslist);
+		String customerorder = C206_CaseStudy.retriveorder(cuslist);
+		String testOutput = "";
+		assertEquals("Check that ViewCustomerorderlist", testOutput, cuslist);
+
+		C206_CaseStudy.addcheckorder(cuslist, c1);
+		C206_CaseStudy.addcheckorder(cuslist, c2);
+		assertEquals("Test if that Camcorder arraylist size is 2?", 2, cuslist.size());
+
+		customerorder = C206_CaseStudy.retriveorder(cuslist);
+	
+
+		testOutput = String.format("%-10d %-10s %-20.2f %-10d %-10.2f %-20.2f\n", 3, "Chicken Rice", 2.5, 1, 5.0, 2);
+		testOutput += String.format("%-10d %-10s %-20.2f %-10d %-10.2f %-20.2f\n",  2, "teriyaki set", 5.0, 1, 5.0, 1);
+
+		assertEquals("Check that ViewAllCustomerorder", testOutput, customerorder);
 	}
 
 }

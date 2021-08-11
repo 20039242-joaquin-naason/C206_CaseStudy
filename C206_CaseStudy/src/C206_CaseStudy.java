@@ -198,7 +198,7 @@ public class C206_CaseStudy {
 				"Customer ID", "Order", "Total Price");
 
 		for (int i = 0; i < cuslist.size(); i++) {
-			output += String.format("%-20d %-30s %10.2%f %-20s %-30s %10.2%f \n",cuslist.get(i).getId(),cuslist.get(i).getName(),cuslist.get(i).getPrice(),cuslist.get(i).isAvailable(),
+			output += String.format("%-20d %-30s %10.2f %-20s %-30s %10.2f \n",cuslist.get(i).getId(),cuslist.get(i).getName(),cuslist.get(i).getPrice(),cuslist.get(i).isAvailable(),
 					cuslist.get(i).getOrderid(),cuslist.get(i).getQuantity(),cuslist.get(i).getTotal());
 		}
 		System.out.println(output);
@@ -211,10 +211,11 @@ public class C206_CaseStudy {
 		double price = Helper.readDouble("Enter price of food >");
 		boolean isAvailable = Helper.readBoolean("Enter if food is avaible(true/false) >");
 		int orderid = Helper.readInt("Enter order ID >");
+		//double total = Helper.readDouble("Enter total price");
 
 		int quantity = Helper.readInt("Enter quantiy >");
 
-		double total = Double.valueOf(quantity) * price;
+		double total =quantity * price;
 
 		Customer c = new Customer(id, food, price, isAvailable, orderid, total, quantity);
 		return c;

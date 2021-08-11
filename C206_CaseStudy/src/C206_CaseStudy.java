@@ -69,12 +69,12 @@ public class C206_CaseStudy {
 
 			} else if (option == 13) {
 				// add order
-				addorder();
-
-			} else if (option == 14) {
-				// view order
 				Customer c = addorder();
 				C206_CaseStudy.addcheckorder(cuslist, c);
+			} else if (option == 14) {
+				// view order
+				C206_CaseStudy.vieworder(cuslist);
+				
 
 			} else if (option == 15) {
 				// delete order
@@ -204,8 +204,7 @@ public class C206_CaseStudy {
 	}
 
 	public static Customer addorder() {
-		// int id, String name, double price, boolean isAvailable, int orderid, double
-		// total, int quantity;
+		
 		int id = Helper.readInt("Enter food id >");
 		String food = Helper.readString("Enter food name >");
 		double price = Helper.readDouble("Enter price of food >");

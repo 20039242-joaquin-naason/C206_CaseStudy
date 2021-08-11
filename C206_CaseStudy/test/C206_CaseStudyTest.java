@@ -15,8 +15,8 @@ public class C206_CaseStudyTest {
 
 	@Before
 	public void setUp() throws Exception {
-		po1 = new Promotion("Spaghetti", 5.00, 3.50, 6);
-		po2 = new Promotion("Fries", 3.00, 1.00, 6);
+		po1 = new Promotion(1,"Spaghetti", 5.00, 3.50, 6);
+		po2 = new Promotion(2,"Fries", 3.00, 1.00, 6);
 		
 		promotionList= new ArrayList<Promotion>();
 	}
@@ -52,27 +52,45 @@ public class C206_CaseStudyTest {
 	}
 	
 	@Test
-	public void testRetrieveAllPromotion() {
-		// Test if Item list is not null but empty, so that can add a new item
-		assertNotNull("Test if there is valid Promotion arraylist to add to", promotionList);
+	public void retrieveAllPromotionTest() {
+		// Test if Item list is not null but empty -boundary
+		assertNotNull("Test if there is valid Promotion arraylist to retrieve item", promotionList);
 		
-		//test if the list of promotion retrieved from the SourceCentre is empty
-				String allPromotion= C206_CaseStudy.retrieveAllPromotion(promotionList);
-				String testOutput = "";
-				assertEquals("Check that ViewAllPromotionlist", testOutput, allPromotion);
-				
-		//Given an empty list, after adding 2 items, test if the size of the list is 2
-				C206_CaseStudy.addPromotion(promotionList, po1);
-				C206_CaseStudy.addPromotion(promotionList, po2);
-		assertEquals("Test if that Promotion arraylist size is 2?", 2, promotionList.size());
-		
-		//test if the expected output string same as the list of promotion retrieved from the SourceCentre
-		allPromotion= C206_CaseStudy.retrieveAllPromotion(promotionList);
-
-		testOutput = String.format("%-10s %-30s %-10s %-10s %-20d\n","Spaghetti", 5.00, "Yes", 3.50, 6);
-		testOutput += String.format("%-10s %-30s %-10s %-10s %-20d\n","Fries", 3.00, "Yes", 2.00, 6);
-	
+		//test if the list of promotion retrieved from the SourceCentre is empty - boundary
+		String allPromotion= C206_CaseStudy.retrieveAllPromotion(promotionList);
+		String testOutput = "";
 		assertEquals("Check that ViewAllPromotionlist", testOutput, allPromotion);
+		
+		//Given an empty list, after adding 2 items, test if the size of the list is 2 - normal
+		C206_CaseStudy.addPromotion(promotionList, po1);
+		C206_CaseStudy.addPromotion(promotionList, po2);
+		assertEquals("Test that Promotion arraylist size is 2", 2, promotionList.size());
+		
+		//test if the expected output string same as the list of promotion retrieved from the SourceCentre	
+		allPromotion= C206_CaseStudy.retrieveAllPromotion(promotionList);
+		testOutput = String.format("%-10s %-10s %-20s %-10s %-10s %-20s\n","1","Spaghetti", "5.00","Yes", "3.50", "6");
+		testOutput += String.format("%-10s %-10s %-20s %-10s %-10s %-20s\n","2", "Fries","3.00", "Yes", "1.00", "6" );
+	
+		assertEquals("Test that ViewAllCamcorderlist", testOutput, allPromotion);
+		
+	}
+	
+	@Test
+	public void TestDeletePromotion() {
+		
+		promotionList.add(po1);
+		promotionList.add(po2);
+		//Test that promotion offer to be deleted is available, if it is not flag out error (error condition)
+		assertTrue(C206_CaseStudy.findPromotion(promotionList, po1.getId()));
+		promotionList.remove(po1);
+		
+		//Test that promotion offer deleted is no longer in the list. (normal condition)
+		assertFalse(C206_CaseStudy.findPromotion(promotionList, po1.getId()));
+		
+		//Test that promotion offer list is not null, so retrieve the promotion offer and delete it (boundary condition)
+		assertNotNull(promotionList);
+		C206_CaseStudy.retrieveAllPromotion(promotionList);
+		promotionList.remove(po2);
 		
 	}
 	

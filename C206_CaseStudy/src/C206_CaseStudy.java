@@ -14,6 +14,11 @@ public class C206_CaseStudy {
 		promotionList.add(new Promotion(2, "Fries", 3.00, 2.00, 6));
 		cuslist.add(new Customer(1,"Burger,Fries",7));
 
+		ArrayList<Stall_Info> stall = new ArrayList<Stall_Info>();
+		
+		stall.add(new Stall_Info(1, "Chinese Food", "06-09-2021"));
+		stall.add(new Stall_Info(2, "Malay Food", "06-09-2021"));
+
 		int option = 0;
 
 		while (option != 16) {

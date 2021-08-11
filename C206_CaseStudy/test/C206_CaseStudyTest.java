@@ -10,16 +10,32 @@ public class C206_CaseStudyTest {
 
 	private Promotion po1;
 	private Promotion po2;
+
 	private Customer c1;
 	private Customer c2;
 
 	private ArrayList<Promotion> promotionList;
 	private ArrayList<Customer> cuslist = new ArrayList<Customer>();
 
+	// Eddy
+	private Food f1;
+	private Food f2;
+	private ArrayList<Food> foodList;
+	// Eddy
+
 	@Before
 	public void setUp() throws Exception {
 		po1 = new Promotion(1, "Spaghetti", 5.00, 3.50, 6);
 		po2 = new Promotion(2, "Fries", 3.00, 1.00, 6);
+
+		promotionList = new ArrayList<Promotion>();
+
+		// Eddy
+		f1 = new Food(1, "Chicken Rice", 3.5);
+		f2 = new Food(2, "Chicken Chop", 5.5);
+		foodList = new ArrayList<Food>();
+		// Eddy
+
 		c1 = new Customer(3, "Chicken Rice", 2.5, 1, 5.0, 2);
 		c2 = new Customer(2, "teriyaki set", 5.0, 1, 5.0, 1);
 
@@ -31,11 +47,17 @@ public class C206_CaseStudyTest {
 		po1 = null;
 		po2 = null;
 		promotionList = null;
-		
-		c1=null;
-		c2=null;
-		cuslist=null;
-		
+
+		c1 = null;
+		c2 = null;
+		cuslist = null;
+
+		// Eddy
+		f1 = null;
+		f2 = null;
+		foodList = null;
+		// Eddy
+
 	}
 
 	@Test
@@ -108,7 +130,6 @@ public class C206_CaseStudyTest {
 		assertNotNull(promotionList);
 		C206_CaseStudy.retrieveAllPromotion(promotionList);
 		promotionList.remove(po2);
-
 	}
 
 	// test add order
@@ -134,23 +155,89 @@ public class C206_CaseStudyTest {
 	// test view order
 	@Test
 	public void testvieworder() {
+		assertNotNull("Test if there is valid customer order arraylist to retrieve item", cuslist);
 
-		assertNotNull("Test if there is valid customer order arraylist to add to", cuslist);
-		String customerorder = C206_CaseStudy.retriveorder(cuslist);
+		String cusorder = C206_CaseStudy.retriveorder(cuslist);
 		String testOutput = "";
-		assertEquals("Check that ViewCustomerorderlist", testOutput, cuslist);
+		assertEquals("Check that ViewAllPromotionlist", testOutput, cusorder);
 
 		C206_CaseStudy.addcheckorder(cuslist, c1);
+
 		C206_CaseStudy.addcheckorder(cuslist, c2);
-		assertEquals("Test if that Camcorder arraylist size is 2?", 2, cuslist.size());
 
-		customerorder = C206_CaseStudy.retriveorder(cuslist);
-	
+		assertEquals("Test that customer order size is 2", 2, cuslist.size());
 
-		testOutput = String.format("%-10d %-10s %-20.2f %-10d %-10.2f %-20.2f\n", 3, "Chicken Rice", 2.5, 1, 5.0, 2);
-		testOutput += String.format("%-10d %-10s %-20.2f %-10d %-10.2f %-20.2f\n",  2, "teriyaki set", 5.0, 1, 5.0, 1);
 
-		assertEquals("Check that ViewAllCustomerorder", testOutput, customerorder);
 	}
+
+	@Test
+	public void deleteorder() {
+
+		cuslist.add(c1);
+		cuslist.add(c2);
+
+		assertTrue(C206_CaseStudy.findorder(cuslist, c1.getOrderid()));
+		cuslist.remove(c1);
+
+		assertFalse(C206_CaseStudy.findorder(cuslist, c1.getOrderid()));
+
+		assertNotNull(cuslist);
+		C206_CaseStudy.retriveorder(cuslist);
+		cuslist.remove(c2);
+	}
+
+	// Eddy
+	@Test
+	public void testAddFood() {
+		// food list is not null so that can add food item.
+		assertNotNull("Test if there is valid food list to add to", foodList);
+
+		// given an empty food list, after adding one food item the size of the food
+		// list is 1.
+		C206_CaseStudy.addFood(foodList, f1);
+		assertEquals("Test that if the food list size is 1", 1, foodList.size());
+
+		// Add one more food item and test the size of the food list is 2.
+		C206_CaseStudy.addFood(foodList, f2);
+		assertEquals("Test that if food list size is 2", 2, foodList.size());
+	}
+
+	@Test
+	public void TestgetAllFoodItem() {
+		// food list is not null so that can view food item.
+		assertNotNull("Test if there is valid food list to get food item", foodList);
+
+		// the food list is not empty so can view food items.
+		foodList.add(f1);
+		C206_CaseStudy.getAllFoodItem(foodList);
+		assertFalse("Test that if the food list is not empty so can view food", foodList.isEmpty());
+
+		// Continue from step 2, test that the size of the food list is 1 and is not
+		// empty.
+		assertEquals("Test that food list size is 1", 1, foodList.size());
+		assertFalse("Test that the food list is not empty", foodList.isEmpty());
+	}
+
+	@Test
+	public void TestdeleteFood() {
+		// food list is not null so that can delete a food item.
+		assertNotNull("Test if there is valid food list to delete food item", foodList);
+
+		// when given an empty food list, after adding two items, the size of the food
+		// list is 2. After removing a food item, the size of the food list becomes 1.
+		foodList.add(f1);
+		foodList.add(f2);
+		assertEquals("Test that food list size is 2", 2, foodList.size());
+		C206_CaseStudy.getAllFoodItem(foodList);
+		foodList.remove(0);
+		assertEquals("Test that food list size is 1", 1, foodList.size());
+
+		// Continue from step 2, test that after removing a food item, the size of the
+		// food list becomes empty.
+		C206_CaseStudy.getAllFoodItem(foodList);
+		foodList.remove(0);
+		assertTrue("Test that the food list is empty", foodList.isEmpty());
+	}
+	// Eddy
 
 }

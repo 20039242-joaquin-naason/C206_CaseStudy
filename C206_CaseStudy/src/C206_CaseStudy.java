@@ -34,14 +34,17 @@ public class C206_CaseStudy {
 			option = Helper.readInt("Enter an option > ");
 
 			if (option == 1) {
-				// View all items
-
+				
+				Stall_Info ss = inputStall();
+				C206_CaseStudy.addStall(stall, ss);
+				
 			} else if (option == 2) {
 
 				C206_CaseStudy.viewStall(stall);
 
 			} else if (option == 3) {
-				// Loan item
+				
+				C206_CaseStudy.deleteStall(stall);
 
 			} else if (option == 4) {
 				// add food item
@@ -273,7 +276,7 @@ public class C206_CaseStudy {
 		}
 	}
 
-	// view stall list
+	// view stall list (Ying Xuan)
 	public static String retrieveAllStall(ArrayList<Stall_Info> stall) {
 		String output = "";
 
@@ -287,10 +290,82 @@ public class C206_CaseStudy {
 
 	public static void viewStall(ArrayList<Stall_Info> stall) {
 		C206_CaseStudy.setHeader("STALL LIST");
-		String output = String.format("%-20s %-20s %-20s %-20s\n", "STALL LIST", "NAME", "OPERATION DATE",
+		String output = String.format("%-20s %-20s %-20s %-20s\n", "ID", "NAME", "OPERATION DATE",
 				"DESCRIPTION");
 		output += retrieveAllStall(stall);
 		System.out.println(output);
+	}
+	
+	//Add new stall (Ying Xuan)
+	public static Stall_Info inputStall() {
+		
+		int id = Helper.readInt("Enter stall id > ");
+		String name = Helper.readString("Enter stall name > ");
+		String date = Helper.readString("Enter operation date > ");
+		String description = Helper.readString("Enter description > ");
+		
+	
+		Stall_Info ss= new Stall_Info(id, name, date, description);
+		return ss;
+		
+	}
+	public static void addStall(ArrayList<Stall_Info> stall, Stall_Info ss) {
+
+		if (searchID(stall,ss) == true){	
+				
+			System.out.println("Duplicated ID!");
+		}
+		else {
+			
+			stall.add(ss);
+			System.out.println("New stall added");
+
+		}	
+	}
+	
+	public static boolean searchID(ArrayList<Stall_Info> stall, Stall_Info ss) {
+		for (Stall_Info i : stall) {
+			if (i.getStallId() == ss.getStallId()){	
+				
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public static void check(ArrayList<Stall_Info> stall) {
+		
+		if (stall.size() > 10) {
+			System.out.println("Cannot have more than 10 stalls.");
+		}
+	}
+	
+	//Delete existing stall (Ying Xuan)
+	public static boolean searchStall(ArrayList<Stall_Info> stall, int id) {
+		for (Stall_Info i : stall) {
+			if (i.getStallId()== id) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public static void deleteStall(ArrayList<Stall_Info> stall) {
+		boolean d = false;
+		int id = Helper.readInt("Enter stall id > ");
+		if (searchStall(stall, id)) {
+			for (Stall_Info i : stall) {
+				if (i.getStallId() == id) {
+					stall.remove(i);
+					d = true;
+				}
+			}
+		}
+		if (d == true) {
+			System.out.println("Stall deleted successfully");
+		} else {
+			System.out.println("Stall deleted unsuccessfully");
+		}
 	}
 
 	// Eddy

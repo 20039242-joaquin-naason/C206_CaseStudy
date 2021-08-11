@@ -11,7 +11,11 @@ public class C206_CaseStudyTest {
 	private Promotion po1;
 	private Promotion po2;
 
+	private Customer c1;
+	private Customer c2;
+
 	private ArrayList<Promotion> promotionList;
+	private ArrayList<Customer> cuslist = new ArrayList<Customer>();
 
 	// Eddy
 	private Food f1;
@@ -31,6 +35,11 @@ public class C206_CaseStudyTest {
 		f2 = new Food(2, "Chicken Chop", 5.5);
 		foodList = new ArrayList<Food>();
 		// Eddy
+
+		c1 = new Customer(3, "Chicken Rice", 2.5, 1, 5.0, 2);
+		c2 = new Customer(2, "teriyaki set", 5.0, 1, 5.0, 1);
+
+		promotionList = new ArrayList<Promotion>();
 	}
 
 	@After
@@ -116,6 +125,23 @@ public class C206_CaseStudyTest {
 		assertNotNull(promotionList);
 		C206_CaseStudy.retrieveAllPromotion(promotionList);
 		promotionList.remove(po2);
+	}
+
+	// test add order
+	public void testAddorder() {
+		// Item list is not null, so that can add a new item
+		assertNotNull("Test if there is valid Customer order arraylist to add to", cuslist);
+
+		// Given an empty list, after adding 1 item, the size of the list is 1
+		C206_CaseStudy.addcheckorder(cuslist, c1);
+		assertEquals("Test if that Customer order  arraylist size is 1?", 1, cuslist.size());
+
+		// The item just added is as same as the first item of the list
+		assertSame("Test that Customer order is added same as 1st item of the list?", c1, cuslist.get(0));
+
+		// Add another item. test The size of the list is 2?
+		C206_CaseStudy.addcheckorder(cuslist, c2);
+		assertEquals("Test that Customer order  arraylist size is 2?", 2, cuslist.size());
 
 	}
 

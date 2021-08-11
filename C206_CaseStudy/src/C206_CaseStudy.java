@@ -12,8 +12,8 @@ public class C206_CaseStudy {
 
 		promotionList.add(new Promotion(1, "Spaghetti", 5.00, 3.50, 6));
 		promotionList.add(new Promotion(2, "Fries", 3.00, 2.00, 6));
-		cuslist.add(new Customer(3, "Chicken Rice", 2.5, true, 1, 5.0, 2));
-		cuslist.add(new Customer(2, "teriyaki set", 5.0, true, 1, 5.0, 1));
+		cuslist.add(new Customer(3, "Chicken Rice", 2.5, 1, 5.0, 2));
+		cuslist.add(new Customer(2, "teriyaki set", 5.0, 1, 5.0, 1));
 
 		ArrayList<Stall_Info> stall = new ArrayList<Stall_Info>();
 
@@ -202,15 +202,17 @@ public class C206_CaseStudy {
 	}
 
 	public static void vieworder(ArrayList<Customer> cuslist) {
-		String output = String.format("%-20s %-30s %10s %-20s %-30s %10s\n", "Food ID", "FOOD", "Price", "Available",
-				"Customer ID", "Order", "Total Price");
+		String output = String.format("%-20s %-30s %10s %-30s %10s\n", "Food ID", "FOOD", "Price", "Customer ID",
+				"Quantity", "Total Price");
 
 		for (int i = 0; i < cuslist.size(); i++) {
-			output += String.format("%-20d %-30s %10.2%f %-20s %-30s %10.2%f \n", cuslist.get(i).getId(),
-					cuslist.get(i).getName(), cuslist.get(i).getPrice(), cuslist.get(i).isAvailable(),
-					cuslist.get(i).getOrderid(), cuslist.get(i).getQuantity(), cuslist.get(i).getTotal());
+
+			output += String.format("%-20s %-30s %10s  %-30s %10s\\n", cuslist.get(i).getId(), cuslist.get(i).getName(),
+					cuslist.get(i).getPrice(), cuslist.get(i).getOrderid(), cuslist.get(i).getQuantity(),
+					cuslist.get(i).getTotal());
 		}
 		System.out.println(output);
+
 	}
 
 	public static Customer addorder() {
@@ -218,14 +220,15 @@ public class C206_CaseStudy {
 		int id = Helper.readInt("Enter food id >");
 		String food = Helper.readString("Enter food name >");
 		double price = Helper.readDouble("Enter price of food >");
-		boolean isAvailable = Helper.readBoolean("Enter if food is avaible(true/false) >");
+
 		int orderid = Helper.readInt("Enter order ID >");
+		// double total = Helper.readDouble("Enter total price");
 
 		int quantity = Helper.readInt("Enter quantiy >");
 
-		double total = Double.valueOf(quantity) * price;
+		double total = quantity * price;
 
-		Customer c = new Customer(id, food, price, isAvailable, orderid, total, quantity);
+		Customer c = new Customer(id, food, price, orderid, total, quantity);
 		return c;
 	}
 

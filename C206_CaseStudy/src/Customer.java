@@ -3,12 +3,12 @@ public class Customer extends Food{
 
 	private int Orderid;
 	private double total;
-	private int quantity;
+	private double quantity;
 	
 	
 	
-	public Customer(int id, String name, double price, boolean isAvailable, int orderid, double total, int quantity) {
-		super(id, name, price, isAvailable);
+	public Customer(int id, String name, double price, int orderid, double total, double quantity) {
+		super(id, name, price);
 		Orderid = orderid;
 		this.total = total;
 		this.quantity = quantity;
@@ -23,11 +23,11 @@ public class Customer extends Food{
 	}
 	
 
-	public int getQuantity() {
+	public double getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(int quantity) {
+	public void setQuantity(double quantity) {
 		this.quantity = quantity;
 	}
 

@@ -12,10 +12,11 @@ public class C206_CaseStudy {
 
 		promotionList.add(new Promotion(1, "Spaghetti", 5.00, 3.50, 6));
 		promotionList.add(new Promotion(2, "Fries", 3.00, 2.00, 6));
-		
+		cuslist.add(new Customer(3, "Chicken Rice", 2.5, true, 1, 5.0, 2));
+		cuslist.add(new Customer(2, "teriyaki set", 5.0, true, 1, 5.0, 1));
 
 		ArrayList<Stall_Info> stall = new ArrayList<Stall_Info>();
-		
+
 		stall.add(new Stall_Info(1, "Chinese Food", "06-09-2021"));
 		stall.add(new Stall_Info(2, "Malay Food", "06-09-2021"));
 
@@ -69,15 +70,11 @@ public class C206_CaseStudy {
 			} else if (option == 13) {
 				// add order
 				addorder();
-				
-
 
 			} else if (option == 14) {
-				//view order
+				// view order
 				Customer c = addorder();
 				C206_CaseStudy.addcheckorder(cuslist, c);
-
-				
 
 			} else if (option == 15) {
 				// delete order
@@ -178,47 +175,55 @@ public class C206_CaseStudy {
 	}
 
 	public static void deletePromotion(ArrayList<Promotion> promotionList) {
-	      boolean deleted = false;
-	        int id = Helper.readInt("Enter promotion ID > ");
-	        if (findPromotion(promotionList, id)) {
-	            for (int i = 0; i < promotionList.size(); i++) {
-	                if (id == promotionList.get(i).getId()) {
-	                    promotionList.remove(i);
-	                    deleted = true;
-	                }
-	            }
-	        }
-	        if (deleted==true) {
-	      System.out.println("Promotion Offer Deleted");
-	    } else {
-	      System.out.println("Promotion Offer Not Deleted");
-	    }
-	    }
-	
+		boolean deleted = false;
+		int id = Helper.readInt("Enter promotion ID > ");
+		if (findPromotion(promotionList, id)) {
+			for (int i = 0; i < promotionList.size(); i++) {
+				if (id == promotionList.get(i).getId()) {
+					promotionList.remove(i);
+					deleted = true;
+				}
+			}
+		}
+		if (deleted == true) {
+			System.out.println("Promotion Offer Deleted");
+		} else {
+			System.out.println("Promotion Offer Not Deleted");
+		}
+	}
+
 	public static void vieworder(ArrayList<Customer> cuslist) {
-		String output =String.format("%-20s %-30s %10s\n","Customer ID","Order","Total Price");
+		String output = String.format("%-20s %-30s %10s %-20s %-30s %10s\n", "Food ID", "FOOD", "Price", "Available",
+				"Customer ID", "Order", "Total Price");
 
 		for (int i = 0; i < cuslist.size(); i++) {
-		output +=String.format("%-20d %-30s %10d\n",cuslist.get(i).getId(),cuslist.get(i).get,cuslist.get(i).getTotal());
+			output += String.format("%-20d %-30s %10.2%f %-20s %-30s %10.2%f \n",cuslist.get(i).getId(),cuslist.get(i).getName(),cuslist.get(i).getPrice(),cuslist.get(i).isAvailable(),
+					cuslist.get(i).getOrderid(),cuslist.get(i).getQuantity(),cuslist.get(i).getTotal());
 		}
 		System.out.println(output);
 	}
-	
+
 	public static Customer addorder() {
-		int id=Helper.readInt("Enter Order ID >");
-		String order=Helper.readString("Enter Order >");
-		int price=Helper.readInt("Enter the total price");
-		
-		//Customer c= new Customer(id,order,price);
-		//return c;
+		// int id, String name, double price, boolean isAvailable, int orderid, double
+		// total, int quantity;
+		int id = Helper.readInt("Enter food id >");
+		String food = Helper.readString("Enter food name >");
+		double price = Helper.readDouble("Enter price of food >");
+		boolean isAvailable = Helper.readBoolean("Enter if food is avaible(true/false) >");
+		int orderid = Helper.readInt("Enter order ID >");
+
+		int quantity = Helper.readInt("Enter quantiy >");
+
+		double total = Double.valueOf(quantity) * price;
+
+		Customer c = new Customer(id, food, price, isAvailable, orderid, total, quantity);
+		return c;
 	}
-	public static void addcheckorder(ArrayList<Customer> cuslist,Customer c) {
+
+	public static void addcheckorder(ArrayList<Customer> cuslist, Customer c) {
 		cuslist.add(c);
 		System.out.println("Order has been added");
-		
-		
+
 	}
-	
-	
 
 }

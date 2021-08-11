@@ -68,10 +68,16 @@ public class C206_CaseStudy {
 
 			} else if (option == 13) {
 				// add order
+				addorder();
+				
+
 
 			} else if (option == 14) {
 				//view order
-				C206_CaseStudy.vieworder(cuslist);
+				Customer c = addorder();
+				C206_CaseStudy.addcheckorder(cuslist, c);
+
+				
 
 			} else if (option == 15) {
 				// delete order
@@ -197,6 +203,22 @@ public class C206_CaseStudy {
 		}
 		System.out.println(output);
 	}
+	
+	public static Customer addorder() {
+		int id=Helper.readInt("Enter Order ID >");
+		String order=Helper.readString("Enter Order >");
+		int price=Helper.readInt("Enter the total price");
+		
+		Customer c= new Customer(id,order,price);
+		return c;
+	}
+	public static void addcheckorder(ArrayList<Customer> cuslist,Customer c) {
+		cuslist.add(c);
+		System.out.println("Order has been added");
+		
+		
+	}
+	
 	
 
 }

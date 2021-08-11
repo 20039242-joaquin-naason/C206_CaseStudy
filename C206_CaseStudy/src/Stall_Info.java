@@ -10,12 +10,12 @@
 public class Stall_Info {
 	
 	private int stallId;
-	private String name1;
+	private String name;
 	private String operationdate;
 
 	public Stall_Info(int stallId, String name, String operationdate) {
 		this.stallId = stallId;
-		this.name1 = name;
+		this.name = name;
 		this.operationdate = operationdate;
 	}
 
@@ -24,7 +24,7 @@ public class Stall_Info {
 	}
 
 	public String getName() {
-		return name1;
+		return name;
 	}
 
 	public String getOperationdate() {

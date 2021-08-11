@@ -13,13 +13,11 @@ public class Food {
 	private int id;
 	private String name;
 	private double price;
-	private boolean isAvailable;
 
 	public Food(int id, String name, double price, boolean isAvailable) {
 		this.id = id;
 		this.name = name;
 		this.price = price;
-		this.isAvailable = isAvailable;
 	}
 
 	public String getName() {
@@ -36,14 +34,6 @@ public class Food {
 
 	public void setPrice(double price) {
 		this.price = price;
-	}
-
-	public boolean isAvailable() {
-		return isAvailable;
-	}
-
-	public void setAvailable(boolean isAvailable) {
-		this.isAvailable = isAvailable;
 	}
 
 	public int getId() {

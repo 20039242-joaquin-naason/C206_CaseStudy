@@ -159,7 +159,7 @@ public class C206_CaseStudyTest {
 
 		String cusorder = C206_CaseStudy.retriveorder(cuslist);
 		String testOutput = "";
-		assertEquals("Check that ViewAllPromotionlist", testOutput, cusorder);
+		assertEquals("Check that ViewAllCustomerorder", testOutput, cusorder);
 
 		C206_CaseStudy.addcheckorder(cuslist, c1);
 

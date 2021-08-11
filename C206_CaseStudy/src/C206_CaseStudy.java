@@ -20,6 +20,12 @@ public class C206_CaseStudy {
 		stall.add(new Stall_Info(1, "Chinese Food", "06-09-2021"));
 		stall.add(new Stall_Info(2, "Malay Food", "06-09-2021"));
 
+		// Eddy
+		ArrayList<Food> foodList = new ArrayList<Food>();
+		foodList.add(new Food(1, "Chicken Rice", 3.5));
+		foodList.add(new Food(2, "Chicken Chop", 5.5));
+		// Eddy
+
 		int option = 0;
 
 		while (option != 16) {
@@ -74,7 +80,6 @@ public class C206_CaseStudy {
 			} else if (option == 14) {
 				// view order
 				C206_CaseStudy.vieworder(cuslist);
-				
 
 			} else if (option == 15) {
 				// delete order
@@ -197,14 +202,15 @@ public class C206_CaseStudy {
 				"Customer ID", "Order", "Total Price");
 
 		for (int i = 0; i < cuslist.size(); i++) {
-			output += String.format("%-20d %-30s %10.2%f %-20s %-30s %10.2%f \n",cuslist.get(i).getId(),cuslist.get(i).getName(),cuslist.get(i).getPrice(),cuslist.get(i).isAvailable(),
-					cuslist.get(i).getOrderid(),cuslist.get(i).getQuantity(),cuslist.get(i).getTotal());
+			output += String.format("%-20d %-30s %10.2%f %-20s %-30s %10.2%f \n", cuslist.get(i).getId(),
+					cuslist.get(i).getName(), cuslist.get(i).getPrice(), cuslist.get(i).isAvailable(),
+					cuslist.get(i).getOrderid(), cuslist.get(i).getQuantity(), cuslist.get(i).getTotal());
 		}
 		System.out.println(output);
 	}
 
 	public static Customer addorder() {
-		
+
 		int id = Helper.readInt("Enter food id >");
 		String food = Helper.readString("Enter food name >");
 		double price = Helper.readDouble("Enter price of food >");
@@ -225,4 +231,61 @@ public class C206_CaseStudy {
 
 	}
 
+	// Eddy
+	public static String getAllFoodItem(ArrayList<Food> foodList) {
+		String output = "";
+		for (int i = 0; i < foodList.size(); i++) {
+			output += String.format("%-5s %-20s %-5s\n", foodList.get(i).getId(), foodList.get(i).getName(),
+					foodList.get(i).getPrice());
+		}
+		return output;
+	}
+
+	public static void viewFood(ArrayList<Food> foodList) {
+		C206_CaseStudy.setHeader("Food LIST");
+		String output = String.format("%-5s %-20s %-5s\n", "ID", "NAME", "PRICE");
+		output += getAllFoodItem(foodList);
+		System.out.println(output);
+	}
+
+	public static Food enterFoodItem() {
+		int id = Helper.readInt("Enter new id > ");
+		String name = Helper.readString("Enter new food name > ");
+		double price = Helper.readDouble("Enter new food price > ");
+		Food f = new Food(id, name, price);
+		return f;
+	}
+
+	public static void addFood(ArrayList<Food> foodList, Food f) {
+		foodList.add(f);
+		System.out.println("New food item added");
+	}
+
+	public static boolean findFood(ArrayList<Food> foodList, String name) {
+		for (int i = 0; i < foodList.size(); i++) {
+			if (name == foodList.get(i).getName()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static void deleteFood(ArrayList<Food> foodList) {
+		boolean deleted = false;
+		String name = Helper.readString("Enter food name > ");
+		if (findFood(foodList, name)) {
+			for (int i = 0; i < foodList.size(); i++) {
+				if (name == foodList.get(i).getName()) {
+					foodList.remove(i);
+					deleted = true;
+				}
+			}
+		}
+		if (deleted == true) {
+			System.out.println("Food item deleted");
+		} else {
+			System.out.println("Food item not deleted");
+		}
+	}
+	// Eddy
 }

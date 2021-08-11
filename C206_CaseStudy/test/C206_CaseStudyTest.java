@@ -20,8 +20,8 @@ public class C206_CaseStudyTest {
 	public void setUp() throws Exception {
 		po1 = new Promotion(1, "Spaghetti", 5.00, 3.50, 6);
 		po2 = new Promotion(2, "Fries", 3.00, 1.00, 6);
-		c1 = new Customer(3, "Chicken Rice", 2.5, true, 1, 5.0, 2);
-		c2 = new Customer(2, "teriyaki set", 5.0, true, 1, 5.0, 1);
+		c1 = new Customer(3, "Chicken Rice", 2.5,1, 5.0, 2);
+		c2 = new Customer(2, "teriyaki set", 5.0,1, 5.0, 1);
 
 		promotionList = new ArrayList<Promotion>();
 	}

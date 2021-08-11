@@ -7,8 +7,8 @@ public class Customer extends Food{
 	
 	
 	
-	public Customer(int id, String name, double price, boolean isAvailable, int orderid, double total, double quantity) {
-		super(id, name, price, isAvailable);
+	public Customer(int id, String name, double price, int orderid, double total, double quantity) {
+		super(id, name, price);
 		Orderid = orderid;
 		this.total = total;
 		this.quantity = quantity;

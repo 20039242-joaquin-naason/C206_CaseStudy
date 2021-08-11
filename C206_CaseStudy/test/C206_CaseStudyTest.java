@@ -48,11 +48,16 @@ public class C206_CaseStudyTest {
 		po2 = null;
 		promotionList = null;
 
+		c1 = null;
+		c2 = null;
+		cuslist = null;
+
 		// Eddy
 		f1 = null;
 		f2 = null;
 		foodList = null;
 		// Eddy
+
 	}
 
 	@Test
@@ -128,12 +133,14 @@ public class C206_CaseStudyTest {
 	}
 
 	// test add order
+	@Test
 	public void testAddorder() {
 		// Item list is not null, so that can add a new item
 		assertNotNull("Test if there is valid Customer order arraylist to add to", cuslist);
 
 		// Given an empty list, after adding 1 item, the size of the list is 1
 		C206_CaseStudy.addcheckorder(cuslist, c1);
+
 		assertEquals("Test if that Customer order  arraylist size is 1?", 1, cuslist.size());
 
 		// The item just added is as same as the first item of the list
@@ -143,6 +150,40 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.addcheckorder(cuslist, c2);
 		assertEquals("Test that Customer order  arraylist size is 2?", 2, cuslist.size());
 
+	}
+
+	// test view order
+	@Test
+	public void testvieworder() {
+		assertNotNull("Test if there is valid customer order arraylist to retrieve item", cuslist);
+
+		String cusorder = C206_CaseStudy.retriveorder(cuslist);
+		String testOutput = "";
+		assertEquals("Check that ViewAllPromotionlist", testOutput, cusorder);
+
+		C206_CaseStudy.addcheckorder(cuslist, c1);
+
+		C206_CaseStudy.addcheckorder(cuslist, c2);
+
+		assertEquals("Test that customer order size is 2", 2, cuslist.size());
+
+
+	}
+
+	@Test
+	public void deleteorder() {
+
+		cuslist.add(c1);
+		cuslist.add(c2);
+
+		assertTrue(C206_CaseStudy.findorder(cuslist, c1.getOrderid()));
+		cuslist.remove(c1);
+
+		assertFalse(C206_CaseStudy.findorder(cuslist, c1.getOrderid()));
+
+		assertNotNull(cuslist);
+		C206_CaseStudy.retriveorder(cuslist);
+		cuslist.remove(c2);
 	}
 
 	// Eddy
@@ -198,4 +239,5 @@ public class C206_CaseStudyTest {
 		assertTrue("Test that the food list is empty", foodList.isEmpty());
 	}
 	// Eddy
+
 }

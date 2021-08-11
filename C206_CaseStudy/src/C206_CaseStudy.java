@@ -87,9 +87,11 @@ public class C206_CaseStudy {
 			} else if (option == 14) {
 				// view order
 				C206_CaseStudy.vieworder(cuslist);
+				retriveorder(cuslist);
 
 			} else if (option == 15) {
 				// delete order
+				C206_CaseStudy.deleteoreder(cuslist);
 
 			} else if (option == 16) {
 				System.out.println("Bye!");
@@ -203,18 +205,24 @@ public class C206_CaseStudy {
 			System.out.println("Promotion Offer Not Deleted");
 		}
 	}
-
 	public static void vieworder(ArrayList<Customer> cuslist) {
-		String output = String.format("%-20s %-30s %10s %-30s %10s\n", "Food ID", "FOOD", "Price", "Customer ID",
+		C206_CaseStudy.setHeader("Customer Order LIST");
+		String output = String.format("%-10s %-10s %-20s %-10s %-10s %-20s\n", "Order ID", "Food ", "PRICE", "Order ID",
 				"Quantity", "Total Price");
+		output += retriveorder(cuslist);
+		System.out.println(output);
+	}
+
+	public static String retriveorder(ArrayList<Customer> cuslist) {
+		String output ="";
 
 		for (int i = 0; i < cuslist.size(); i++) {
 
-			output += String.format("%-20s %-30s %10s  %-30s %10s\\n", cuslist.get(i).getId(), cuslist.get(i).getName(),
+			output += String.format("%-10d %-10s %-20.2f %-10d %-10.2f %-20.2f\n", cuslist.get(i).getId(), cuslist.get(i).getName(),
 					cuslist.get(i).getPrice(), cuslist.get(i).getOrderid(), cuslist.get(i).getQuantity(),
 					cuslist.get(i).getTotal());
 		}
-		System.out.println(output);
+		return output;
 
 	}
 
@@ -225,11 +233,11 @@ public class C206_CaseStudy {
 		double price = Helper.readDouble("Enter price of food >");
 
 		int orderid = Helper.readInt("Enter order ID >");
-		// double total = Helper.readDouble("Enter total price");
+		 double total = Helper.readDouble("Enter total price");
 
 		int quantity = Helper.readInt("Enter quantiy >");
 
-		double total = quantity * price;
+		//double total = quantity * price;
 
 		Customer c = new Customer(id, food, price, orderid, total, quantity);
 		return c;
@@ -238,7 +246,34 @@ public class C206_CaseStudy {
 	public static void addcheckorder(ArrayList<Customer> cuslist, Customer c) {
 		cuslist.add(c);
 		System.out.println("Order has been added");
+	
 
+	}
+	public static boolean findorder(ArrayList<Customer> cuslist,int id) {
+		for (int i = 0; i < cuslist.size(); i++) {
+			if ( id == cuslist.get(i).getOrderid()) {
+				return true;
+			}
+		}
+		return false;
+	}
+	//delete
+	public static void deleteoreder(ArrayList<Customer> cuslist) {
+		boolean deleted = false;
+		int id=Helper.readInt("Enter order id");
+		if (findorder(cuslist, id)) {
+			for (int i = 0; i < cuslist.size(); i++) {
+				if (id ==  cuslist.get(i).getOrderid()) {
+					cuslist.remove(i);
+					deleted = true;
+				}
+			}
+		}
+		if (deleted == true) {
+			System.out.println("Order deleted");
+		} else {
+			System.out.println("Order not deleted");
+		}
 	}
 
 	// view stall list (Ying Xuan)

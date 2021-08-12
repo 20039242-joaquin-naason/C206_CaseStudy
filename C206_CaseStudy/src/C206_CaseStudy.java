@@ -303,26 +303,22 @@ public class C206_CaseStudy {
 		String name = Helper.readString("Enter stall name > ");
 		String date = Helper.readString("Enter operation date > ");
 		String description = Helper.readString("Enter description > ");
-		
-	
+
 		Stall_Info ss= new Stall_Info(id, name, date, description);
 		return ss;
-		
-	}
-	public static void addStall(ArrayList<Stall_Info> stall, Stall_Info ss) {
-
-		if (searchID(stall,ss) == true){	
-				
-			System.out.println("Duplicated ID!");
-		}
-		else {
-			
-			stall.add(ss);
-			System.out.println("New stall added");
-
-		}	
 	}
 	
+	public static void addStall(ArrayList<Stall_Info> stall, Stall_Info ss) {
+
+		
+		if (searchID(stall,ss) == true && check(stall) == true){		
+			System.out.println("Duplicated ID!");
+		}
+		else {	
+			stall.add(ss);
+			System.out.println("New stall added");
+		}	
+	}
 	public static boolean searchID(ArrayList<Stall_Info> stall, Stall_Info ss) {
 		for (Stall_Info i : stall) {
 			if (i.getStallId() == ss.getStallId()){	
@@ -333,11 +329,13 @@ public class C206_CaseStudy {
 		return false;
 	}
 	
-	public static void check(ArrayList<Stall_Info> stall) {
+	public static boolean check(ArrayList<Stall_Info> stall) {
 		
 		if (stall.size() > 10) {
 			System.out.println("Cannot have more than 10 stalls.");
+			return false;
 		}
+		return true;
 	}
 	
 	//Delete existing stall (Ying Xuan)

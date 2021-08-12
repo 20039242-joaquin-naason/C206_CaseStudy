@@ -22,6 +22,11 @@ public class C206_CaseStudyTest {
 	private Food f2;
 	private ArrayList<Food> foodList;
 	// Eddy
+	
+	private Stall_Info s1;
+	private Stall_Info s2;
+	private ArrayList<Stall_Info> stall = new ArrayList<Stall_Info>();
+
 
 	@Before
 	public void setUp() throws Exception {
@@ -40,6 +45,12 @@ public class C206_CaseStudyTest {
 		c2 = new Customer(2, "teriyaki set", 5.0, 1, 5.0, 1);
 
 		promotionList = new ArrayList<Promotion>();
+		
+		//Stall
+		s1 = new Stall_Info(1, "Chinese Food", "06-09-2021", "tasty");
+		s2 = new Stall_Info(2, "Malay Food", "06-09-2021", "yummy");
+		stall = new ArrayList<Stall_Info>();
+
 	}
 
 	@After
@@ -57,6 +68,11 @@ public class C206_CaseStudyTest {
 		f2 = null;
 		foodList = null;
 		// Eddy
+		
+		//stall
+		s1 = null;
+		s2 = null;
+		stall = null;
 
 	}
 
@@ -64,6 +80,63 @@ public class C206_CaseStudyTest {
 	public void c206_test() {
 		// fail("Not yet implemented");
 		assertTrue("C206_CaseStudy_SampleTest ", true);
+	}
+	
+	@Test
+	public void testAddStall() {
+		// Item list is not null, so that can add a new item
+		assertNotNull("Test if there is stall arraylist to add to", stall);
+
+		// Given an empty list, after adding 1 stall, the size of the list is 1
+		C206_CaseStudy.addStall(stall, s1);
+		assertEquals("Test if that stall arraylist size is 1?", 1, stall.size());
+
+		// The stall just added is as same as the first stall of the list
+		assertSame("Test that stall is added same as first item of the list?", s1, stall.get(0));
+
+		// Add another item. test The size of the list is 2?
+		C206_CaseStudy.addStall(stall, s2);
+		assertEquals("Test that stall arraylist size is 2?", 2, stall.size());
+		
+		// Test that a repeated stall id cannot be added.
+		C206_CaseStudy.addStall(stall, s2);
+		assertEquals("Test that stall arraylist size is 2?", 2, stall.size());
+		
+		// The stall just added is as same as the second stall of the list
+		assertSame("Test that stall is added same as second item of the list?", s2, stall.get(1));
+
+		//Test if the stall list can add stall 10
+		Stall_Info s3 = new Stall_Info(3, "Malay Food", "06-09-2021", "test");
+		Stall_Info s4 = new Stall_Info(4, "Malay Food", "06-09-2021", "test");
+		Stall_Info s5 = new Stall_Info(5, "Malay Food", "06-09-2021", "test");
+		Stall_Info s6 = new Stall_Info(6, "Malay Food", "06-09-2021", "test");
+		Stall_Info s7 = new Stall_Info(7, "Malay Food", "06-09-2021", "test");
+		Stall_Info s8 = new Stall_Info(8, "Malay Food", "06-09-2021", "test");
+		Stall_Info s9 = new Stall_Info(9, "Malay Food", "06-09-2021", "test");
+		Stall_Info s10 = new Stall_Info(10, "Malay Food", "06-09-2021", "test");
+		Stall_Info s11 = new Stall_Info(10, "Malay Food", "06-09-2021", "test");
+
+		C206_CaseStudy.addStall(stall, s3);
+		C206_CaseStudy.addStall(stall, s4);
+		C206_CaseStudy.addStall(stall, s5);
+		C206_CaseStudy.addStall(stall, s6);
+		C206_CaseStudy.addStall(stall, s7);
+		C206_CaseStudy.addStall(stall, s8);
+		C206_CaseStudy.addStall(stall, s9);
+		C206_CaseStudy.addStall(stall, s10);
+		C206_CaseStudy.addStall(stall, s11);
+		
+		//Test if the stall list can add stall 10
+		assertEquals("Test that stall arraylist size is 10?", 10, stall.size());
+		
+		//Test after stall 11 have been block, the stall list is still 10
+		assertEquals("Test that stall arraylist size is 10?", 10, stall.size());
+		
+	}
+	
+	@Test
+	public void testViewStall() {
+		
 	}
 
 	@Test
@@ -170,7 +243,7 @@ public class C206_CaseStudyTest {
 
 	}
 
-	@Test
+	/*@Test
 	public void deleteorder() {
 
 		cuslist.add(c1);
@@ -184,7 +257,7 @@ public class C206_CaseStudyTest {
 		assertNotNull(cuslist);
 		C206_CaseStudy.retriveorder(cuslist);
 		cuslist.remove(c2);
-	}
+	} */
 
 	// Eddy
 	@Test

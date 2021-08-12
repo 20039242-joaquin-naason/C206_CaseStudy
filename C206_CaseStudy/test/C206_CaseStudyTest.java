@@ -89,21 +89,21 @@ public class C206_CaseStudyTest {
 
 		// Given an empty list, after adding 1 stall, the size of the list is 1
 		C206_CaseStudy.addStall(stall, s1);
-		assertEquals("Test if that stall arraylist size is 1?", 1, stall.size());
+		assertEquals("Test if that stall arraylist size is 1", 1, stall.size());
 
 		// The stall just added is as same as the first stall of the list
-		assertSame("Test that stall is added same as first item of the list?", s1, stall.get(0));
+		assertSame("Test that stall is added same as first item of the list", s1, stall.get(0));
 
-		// Add another item. test The size of the list is 2?
+		// Add another stall. Test if the size of the list is 2?
 		C206_CaseStudy.addStall(stall, s2);
-		assertEquals("Test that stall arraylist size is 2?", 2, stall.size());
+		assertEquals("Test that stall arraylist size is 2", 2, stall.size());
 		
 		// Test that a repeated stall id cannot be added.
 		C206_CaseStudy.addStall(stall, s2);
-		assertEquals("Test that stall arraylist size is 2?", 2, stall.size());
+		assertEquals("Test that stall arraylist size is 2", 2, stall.size());
 		
 		// The stall just added is as same as the second stall of the list
-		assertSame("Test that stall is added same as second item of the list?", s2, stall.get(1));
+		assertSame("Test that stall is added same as second item of the list", s2, stall.get(1));
 
 		//Test if the stall list can add stall 10
 		Stall_Info s3 = new Stall_Info(3, "Malay Food", "06-09-2021", "test");
@@ -137,6 +137,38 @@ public class C206_CaseStudyTest {
 	@Test
 	public void testViewStall() {
 		
+		//Test that the stall list is not null, so that can view stalls.
+		assertNotNull("Test if there is valid stall list to view stall", stall);
+
+		//Test the stall list is not empty so can view stall.
+		stall.add(s1);
+		C206_CaseStudy.addStall(stall, s1);
+		assertFalse("Test that if the stall list is not empty so can view stall", stall.isEmpty());
+
+		//Continue from step 2, test that the size of the stall list is 1 and is not empty.
+		assertEquals("Test that stall list size is 1", 1, stall.size());
+		assertFalse("Test that the food list is not empty", stall.isEmpty());
+	}
+	
+	@Test
+	public void testDeleteStall() {
+		// Test that stall list is not null so that can delete stall.
+		assertNotNull("Test if there is valid stall list to delete stall", stall);
+
+		// Test that when given an empty stall list, after adding two stalls, the size of the stall
+		// list is 2. After removing a stall, the size of the stall list becomes 1.
+		stall.add(s1);
+		stall.add(s2);
+		assertEquals("Test that stall list size is 2", 2, stall.size());
+		C206_CaseStudy.doDelete(stall, 0);
+		stall.remove(0);
+		assertEquals("Test that stall list size is 1", 1, stall.size());
+
+		// Continue from step 2, test that after removing a stall, the size of the
+		// stall list becomes empty.
+		C206_CaseStudy.doDelete(stall, 0);
+		stall.remove(0);
+		assertTrue("Test that the stall list is empty", stall.isEmpty());
 	}
 
 	@Test
@@ -243,7 +275,7 @@ public class C206_CaseStudyTest {
 
 	}
 
-	/*@Test
+	@Test
 	public void deleteorder() {
 
 		cuslist.add(c1);
@@ -257,7 +289,7 @@ public class C206_CaseStudyTest {
 		assertNotNull(cuslist);
 		C206_CaseStudy.retriveorder(cuslist);
 		cuslist.remove(c2);
-	} */
+	} 
 
 	// Eddy
 	@Test

@@ -44,7 +44,7 @@ public class C206_CaseStudy {
 
 			} else if (option == 3) {
 				
-				C206_CaseStudy.deleteStall(stall);
+				C206_CaseStudy.DeleteStall(stall);
 
 			} else if (option == 4) {
 				// add food item
@@ -339,30 +339,26 @@ public class C206_CaseStudy {
 	}
 	
 	//Delete existing stall (Ying Xuan)
-	public static boolean searchStall(ArrayList<Stall_Info> stall, int id) {
-		for (Stall_Info i : stall) {
-			if (i.getStallId()== id) {
-				return true;
+	public static boolean doDelete(ArrayList<Stall_Info> stall, int id) {
+		boolean delete = false;
+
+		for (int i = 0; i < stall.size(); i++) {
+			if (stall.get(i).getStallId() == id) {
+				stall.remove(i);
+				delete = true;
 			}
 		}
-		return false;
+		return delete;	
 	}
-	
-	public static void deleteStall(ArrayList<Stall_Info> stall) {
-		boolean d = false;
+	public static void DeleteStall(ArrayList<Stall_Info> stall) {
+		C206_CaseStudy.viewStall(stall);
 		int id = Helper.readInt("Enter stall id > ");
-		if (searchStall(stall, id)) {
-			for (Stall_Info i : stall) {
-				if (i.getStallId() == id) {
-					stall.remove(i);
-					d = true;
-				}
-			}
-		}
-		if (d == true) {
-			System.out.println("Stall deleted successfully");
+		Boolean delete = doDelete(stall, id);
+		
+		if (delete == false) {
+			System.out.println("No such stall id");
 		} else {
-			System.out.println("Stall deleted unsuccessfully");
+			System.out.println("Stall with id " + id + " deleted!");
 		}
 	}
 

@@ -42,7 +42,7 @@ public class C206_CaseStudyTest {
 		// Eddy
 
 		c1 = new Customer(3, "Chicken Rice", 2.5, 1, 5.0, 2);
-		c2 = new Customer(2, "teriyaki set", 5.0, 1, 5.0, 1);
+		c2 = new Customer(2, "teriyaki set", 5.0, 2, 5.0, 1);
 
 		promotionList = new ArrayList<Promotion>();
 		
@@ -289,6 +289,13 @@ public class C206_CaseStudyTest {
 		assertNotNull(cuslist);
 		C206_CaseStudy.retriveorder(cuslist);
 		cuslist.remove(c2);
+		
+		
+	
+	
+
+
+
 	} 
 
 	// Eddy

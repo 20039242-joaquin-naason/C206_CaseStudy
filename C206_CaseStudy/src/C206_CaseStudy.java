@@ -13,7 +13,7 @@ public class C206_CaseStudy {
 		promotionList.add(new Promotion(1, "Spaghetti", 5.00, 3.50, 6));
 		promotionList.add(new Promotion(2, "Fries", 3.00, 2.00, 6));
 		cuslist.add(new Customer(3, "Chicken Rice", 2.5, 1, 5.0, 2));
-		cuslist.add(new Customer(2, "teriyaki set", 5.0, 1, 5.0, 1));
+		cuslist.add(new Customer(2, "teriyaki set", 5.0, 2, 5.0, 1));
 
 		ArrayList<Stall_Info> stall = new ArrayList<Stall_Info>();
 
@@ -207,7 +207,7 @@ public class C206_CaseStudy {
 	}
 	public static void vieworder(ArrayList<Customer> cuslist) {
 		C206_CaseStudy.setHeader("Customer Order LIST");
-		String output = String.format("%-10s %-10s %-20s %-10s %-10s %-20s\n", "Order ID", "Food ", "PRICE", "Order ID",
+		String output = String.format("%-10s %-10s %-20s %-10s %-10s %-20s\n", "ID", "Food ", "PRICE", "Order ID",
 				"Quantity", "Total Price");
 		output += retriveorder(cuslist);
 		System.out.println(output);
@@ -249,9 +249,9 @@ public class C206_CaseStudy {
 	
 
 	}
-	public static boolean findorder(ArrayList<Customer> cuslist,int id) {
+	public static boolean findorder(ArrayList<Customer> cuslist,int orid) {
 		for (int i = 0; i < cuslist.size(); i++) {
-			if ( id == cuslist.get(i).getOrderid()) {
+			if ( orid == cuslist.get(i).getOrderid()) {
 				return true;
 			}
 		}
@@ -260,10 +260,10 @@ public class C206_CaseStudy {
 	//delete
 	public static void deleteoreder(ArrayList<Customer> cuslist) {
 		boolean deleted = false;
-		int id=Helper.readInt("Enter order id");
-		if (findorder(cuslist, id)) {
+		int orid=Helper.readInt("Enter order id");
+		if (findorder(cuslist, orid)) {
 			for (int i = 0; i < cuslist.size(); i++) {
-				if (id ==  cuslist.get(i).getOrderid()) {
+				if (orid ==  cuslist.get(i).getOrderid()) {
 					cuslist.remove(i);
 					deleted = true;
 				}

@@ -26,6 +26,14 @@ public class C206_CaseStudyTest {
 	private Stall_Info s1;
 	private Stall_Info s2;
 	private ArrayList<Stall_Info> stall = new ArrayList<Stall_Info>();
+	
+	// Done By Alan
+	private Purchase_order o1;
+	private Purchase_order o2;
+	private ArrayList<Purchase_order> purchaseOrder = new ArrayList<Purchase_order>();
+
+	private Stall_staff ss1;
+//	
 
 
 	@Before
@@ -50,6 +58,13 @@ public class C206_CaseStudyTest {
 		s1 = new Stall_Info(1, "Chinese Food", "06-09-2021", "tasty");
 		s2 = new Stall_Info(2, "Malay Food", "06-09-2021", "yummy");
 		stall = new ArrayList<Stall_Info>();
+		
+		//Done By Alan Goh
+		// stall_staff
+		o1 = new Purchase_order(o1, o2); // the arguments are food, id, quantity
+		o2 = new Purchase_order(o1, o2);
+		purchaseOrder = new ArrayList<Purchase_order>();
+		//
 
 	}
 
@@ -73,6 +88,12 @@ public class C206_CaseStudyTest {
 		s1 = null;
 		s2 = null;
 		stall = null;
+		
+		// Done by Alan
+		// stall staff
+		ss1 = null;
+		ss1 = null;
+		Object stallstaff = null;
 
 	}
 
@@ -351,5 +372,39 @@ public class C206_CaseStudyTest {
 		assertTrue("Test that the food list is empty", foodList.isEmpty());
 	}
 	// Eddy
+	
+	// Done by Alan
+	@Test
+	public void testAddPurchaseOrder() {
+		assertNotNull("Test if there is valid purchase order list to add to", purchaseOrder);
+
+		purchaseOrder.add(o1);
+		assertEquals("Test that if the purchase order list size is 1", 1, purchaseOrder.size());
+
+		purchaseOrder.add(o2);
+		assertEquals("Test that if purchase order size is 2", 2, purchaseOrder.size());
+	}
+
+	@Test
+	public void testViewPurchaseOrder() {
+		assertNotNull("Test if there is valid purchase order list to retrieve item", purchaseOrder);
+
+		purchaseOrder.add(o1);
+		assertEquals("Test that food list size is 1", o1, purchaseOrder.get(0));
+		purchaseOrder.add(o2);
+		assertEquals("Test that food list size is 1", o2, purchaseOrder.get(1));
+
+	}
+
+	@Test
+	public void testDeletePurchaseOrder() {
+
+		assertNotNull("Test if there is valid customer order arraylist to retrieve item", purchaseOrder);
+		ss1.remove(o1);
+		assertEquals("Test that food list size is 1", o2, purchaseOrder.get(0));
+	}
+	//
+
+}
 
 }

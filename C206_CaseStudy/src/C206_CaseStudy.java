@@ -419,4 +419,82 @@ public class C206_CaseStudy {
 		}
 	}
 	// Eddy
+	
+	
+	//Add purchase order(Alan Goh)
+	public static Purchase_order add_purchase_order() {
+
+		int id = Helper.readInt("Enter purchase order id > ");
+		String name = Helper.readString("Enter purhcase order size > ");
+		String description = Helper.readString("Enter purhcase order > ");
+
+		Purchase_order ss = new Purchase_order(id, name, description);
+		return ss;
+	}
+
+	public static void add_purchase_order(ArrayList<Stall_Info> purchase, Stall_Info ss) {
+
+		if (searchID(purchase, ss) == true && check(purchase) == true) {
+			System.out.println("Duplicated order id!");
+		} else {
+			purchase.add(ss);
+			System.out.println("New purchase order is added");
+		}
+	}
+
+	public static boolean searchID(ArrayList<Purchase_order> stall, Purchase_order ss) {
+		;
+		for (Purchase_order i : stall)
+			;
+		{
+			Purchase_order i = null;
+			if (i.getPurchaseId() == ss.getPurchaseId()) {
+
+				return true;
+			}
+		}
+		return false;
+	}
+
+	
+	
+//view purchase order (Alan Goh)
+	public static String retrievepurchaseorder(ArrayList<Stall_Info> stall) {
+		String output = "";
+
+		for (int i = 0; i < stall.size(); i++) {
+
+			output += String.format("%-20d %-20s %-20s %-20s\n", stall.get(i).getStallId(), stall.get(i).getName(),
+					stall.get(i).getDescription());
+		}
+		return output;
+	}
+
+
+
+//Delete purchase order (Alan Goh)
+	public static boolean doDelete1(ArrayList<Stall_Info> stall, int id) {
+		boolean delete = false;
+
+		for (int i = 0; i < stall.size(); i++) {
+			if (stall.get(i).getStallId() == id) {
+				stall.remove(i);
+				delete = true;
+			}
+		}
+		return delete;
+	}
+
+	public static void DeleteStall1(ArrayList<Stall_Info> stall) {
+		C206_CaseStudy.viewStall(stall);
+		int id = Helper.readInt("Enter purchase id > ");
+		Boolean delete = doDelete(stall, id);
+
+		if (delete == false) {
+			System.out.println("No purchase id");
+		} else {
+			System.out.println("purchase with id " + id + " deleted!");
+		}
+	}
+}
 }
